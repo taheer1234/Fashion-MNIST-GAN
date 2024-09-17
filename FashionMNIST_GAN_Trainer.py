@@ -172,8 +172,8 @@ class FashionGAN(Model):
             total_g_loss = self.g_loss(tf.zeros_like(predicted_labels), predicted_labels)
 
         #Apply Backpropogation.
-        g_grad = g_tape.gradient(total_g_loss, self.discriminator.trainable_variables)
-        self.g_opt.apply_gradients(zip(g_grad, self.discriminator.trainable_variables))
+        g_grad = g_tape.gradient(total_g_loss, self.generator.trainable_variables)
+        self.g_opt.apply_gradients(zip(g_grad, self.generator.trainable_variables))
         
         return {"d_loss": total_d_loss, "g_loss": total_g_loss}
 
